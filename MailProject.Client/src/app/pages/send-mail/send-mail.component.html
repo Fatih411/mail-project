@@ -1,0 +1,65 @@
+<div class="p-4 mt-14">
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Yeni Mail Gönderimi</h1>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Form Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <form [formGroup]="sendForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+                <!-- SMTP Account -->
+                <div>
+                    <label for="smtpAccountId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SMTP
+                        Hesabı</label>
+                    <select id="smtpAccountId" formControlName="smtpAccountId"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="">Hesap Seçiniz</option>
+                        <option *ngFor="let acc of smtpAccounts" [value]="acc.id">{{ acc.accountName }} ({{ acc.username
+                            }})</option>
+                    </select>
+                </div>
+
+                <!-- Mail Template -->
+                <div>
+                    <label for="mailTemplateId"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mail Şablonu</label>
+                    <select id="mailTemplateId" formControlName="mailTemplateId"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="">Şablon Seçiniz</option>
+                        <option *ngFor="let tmpl of mailTemplates" [value]="tmpl.id">{{ tmpl.title }}</option>
+                    </select>
+                </div>
+
+                <!-- Recipients -->
+                <div>
+                    <label for="recipients" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alıcı
+                        Listesi (Her satıra bir e-mail)</label>
+                    <textarea id="recipients" formControlName="recipients" rows="10"
+                        placeholder="ornek1@mail.com&#10;ornek2@mail.com"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"></textarea>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Toplu gönderim için her satıra bir e-posta
+                        adresi yazınız.</p>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" [disabled]="sendForm.invalid || isLoading"
+                    class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span *ngIf="isLoading">Gönderiliyor...</span>
+                    <span *ngIf="!isLoading">Gönderimi Başlat</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Şablon Önizleme</h2>
+            <div class="border rounded-lg p-4 bg-gray-50 dark:bg-gray-900 min-h-[400px] overflow-auto">
+                <div *ngIf="previewContent" [innerHTML]="previewContent"></div>
+                <div *ngIf="!previewContent" class="flex items-center justify-center h-full text-gray-500">
+                    Şablon seçildiğinde önizleme burada görünecek.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

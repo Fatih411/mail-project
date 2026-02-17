@@ -1,0 +1,29 @@
+<div class="space-y-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Genel Bakış</h1>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Genel istatistikler ve son aktiviteler.</p>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Stat Card 1 -->
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ stats.totalMails }}</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">Toplam Gönderilen Mail</p>
+        </div>
+        <!-- Stat Card 2 -->
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ stats.activeTemplates }}
+            </h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">Aktif Şablon</p>
+        </div>
+        <!-- Stat Card 3 -->
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ stats.smtpAccounts }}
+            </h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">SMTP Hesabı</p>
+        </div>
+    </div>
+</div>
